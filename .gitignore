@@ -12,6 +12,3 @@
 *.out
 
 /.idea
-.idea/*.iml
-.idea/*.xml
-vcs.xml
