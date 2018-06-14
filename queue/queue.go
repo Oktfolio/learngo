@@ -1,30 +1,22 @@
-package main
+package queue
 
-import "fmt"
+// An FIFO queue.
+type Queue []interface{}
 
-func main() {
-	q := Queue{1}
-	q.Push(2)
-	q.Push(3)
-	fmt.Println(q.Pop())
-	fmt.Println(q.Pop())
-	fmt.Println(q.isEmpty())
-	fmt.Println(q.Pop())
-	fmt.Println(q.isEmpty())
-}
-
-type Queue []int
-
+// Pushes the element into the queue
+// 		e.g q.Push(123)
 func (queue *Queue) Push(v int) {
 	*queue = append(*queue, v)
 }
 
+// Pops element from head
 func (queue *Queue) Pop() int {
 	head := (*queue)[0]
 	*queue = (*queue)[1:]
-	return head
+	return head.(int)
 }
 
-func (queue *Queue) isEmpty() bool {
+// Returns if the queue is empty or not
+func (queue *Queue) IsEmpty() bool {
 	return len(*queue) == 0
 }

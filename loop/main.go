@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"os"
 	"bufio"
+	"io"
+	"strings"
 )
 
 func main() {
@@ -15,7 +17,14 @@ func main() {
 		convertToBinary(0),       // 1101
 	)
 	printFile("abc.txt")
-	endlessLoop()
+	s := `abc"Fds
+		dsagdsaer
+		gdsqre
+		bte7
+
+		32vfa"`
+	printFileContents(strings.NewReader(s))
+	// endlessLoop()
 }
 
 func convertToBinary(n int) string {
@@ -36,7 +45,11 @@ func printFile(filename string) {
 	if err != nil {
 		panic(err)
 	}
-	scanner := bufio.NewScanner(file)
+	printFileContents(file)
+}
+
+func printFileContents(reader io.Reader) {
+	scanner := bufio.NewScanner(reader)
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())
 	}
